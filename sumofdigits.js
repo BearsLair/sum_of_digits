@@ -1,6 +1,19 @@
 function digitalRoot(n) {
-  const numArray = Array.from(String(n), Number);
-  return numArray.reduce((acc, curr) => acc + curr);
+  let numArray = [];
+
+  reduceToSingleDigit();
+
+  function reduceToSingleDigit() {
+    numArray = Array.from(String(n), Number);
+    numArray.reduce((acc, curr) => acc + curr);
+    numArray = Array.from(String(n), Number);
+
+    if (numArray.length > 1) {
+      reduceToSingleDigit();
+    } else {
+      return numArray[0];
+    }
+  }
 }
 
 console.log(digitalRoot(16));
